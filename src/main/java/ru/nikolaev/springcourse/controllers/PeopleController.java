@@ -13,7 +13,7 @@ import ru.nikolaev.springcourse.dao.PersonDAO;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private PersonDAO personDAO;
+    private final PersonDAO personDAO;
 
     @Autowired
     public PeopleController(PersonDAO personDAO) {
@@ -27,7 +27,7 @@ public class PeopleController {
         return "people/index";
     }
 
-    @GetMapping("/(id)")
+    @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         //Получим одного человека по id из DAO и передадим на отображение в представление
         model.addAttribute("person", personDAO.show(id));
